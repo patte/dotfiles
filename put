@@ -1,0 +1,42 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+if ! command -v git &> /dev/null
+then
+	echo "git not found"
+	exit 1
+fi
+
+COMMANDS=()
+while read f
+do
+	[ $f = get         ] && continue
+	[ $f = put         ] && continue
+	[ $f = install-apt ] && continue
+	[ $f = setup       ] && continue
+	[ $f = README.md   ] && continue
+	[ $f = .gitignore  ] && continue
+
+	if ! cmp -s $f ~/$f
+	then
+		COMMANDS+=("rsync -ab --relative $f ~/  # diff $f ~/$f")
+	fi
+done < <(git ls-files)
+
+if [ ${#COMMANDS[@]} -gt 0 ]; then
+	printf "%s\n"  "${COMMANDS[@]}"
+	echo
+	read -p "Do you want to run these commands? [yY/nN] " -n 1 -r
+	echo
+
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		for (( i = 0; i < ${#COMMANDS[@]} ; i++ )); do
+		    eval "${COMMANDS[$i]}"
+		done
+		echo "done!"
+	fi
+fi
+
+# vim:ft=sh

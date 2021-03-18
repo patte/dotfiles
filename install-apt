@@ -1,0 +1,42 @@
+#!/bin/bash
+read -p "Do you want to also install gnupg and gopass? [yY/nN] " -n 1 -r
+echo # move to a new line
+
+if ! command -v apt &> /dev/null
+then
+	echo "apt not found"
+	exit 1
+fi
+
+sudo apt update
+sudo apt install --yes zsh vim tmux rsync htop wget curl fonts-powerline
+
+# zplug - zsh plugin manager
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+# tpm - tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	sudo apt install --yes gnupg2 rng-tools pinentry-curses
+
+	# gopass
+	GOPASS_VERSION='1.12.2'
+	ARCH=`dpkg --print-architecture`
+	wget "https://github.com/gopasspw/gopass/releases/download/v${GOPASS_VERSION}/gopass_${GOPASS_VERSION}_linux_${ARCH}.deb"
+	sudo dpkg -i "gopass_${GOPASS_VERSION}_linux_${ARCH}.deb"
+	rm "gopass_${GOPASS_VERSION}_linux_${ARCH}.deb"
+
+	gopass completion zsh > ~/_gopass
+	sudo mv ~/_gopass /usr/share/zsh/vendor-completions/_gopass
+	#rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit
+fi
+
+echo
+echo "making zsh the default shell"
+chsh -s /bin/zsh
+
+
+# vim:ft=sh

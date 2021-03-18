@@ -1,0 +1,31 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+if ! command -v git &> /dev/null
+then
+	echo "git not found"
+	exit 1
+fi
+
+
+if [ -n "$(git status --porcelain)" ]
+then
+	echo "working copy not clean"
+	exit 1
+fi
+
+
+while read f
+do
+	[ $f = get         ] && continue
+	[ $f = put         ] && continue
+	[ $f = install-apt ] && continue
+	[ $f = setup       ] && continue
+	[ $f = README.md   ] && continue
+	[ $f = .gitignore  ] && continue
+
+	cp ~/$f $f
+done < <(git ls-files)
+
+# vim:ft=sh
