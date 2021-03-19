@@ -1,13 +1,15 @@
 #!/bin/bash
-read -p "Do you want to also install gnupg and gopass? [yY/nN] " -n 1 -r
-echo # move to a new line
-
 if ! command -v apt &> /dev/null
 then
 	echo "apt not found"
 	exit 1
 fi
 
+# ask for additionals first
+read -p "Do you want to also install gnupg and gopass? [yY/nN] " -n 1 -r
+echo # move to a new line
+
+# install basics
 sudo apt update
 sudo apt install --yes zsh vim tmux rsync htop wget curl fonts-powerline
 
