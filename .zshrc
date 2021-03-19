@@ -62,8 +62,15 @@ alias gig='git grep -i -n'
 alias beep='spd-say -t female1 "done"'
 
 alias dodu='docker-compose down && docker-compose up -d'
-# ubuntu shell with working locale (pw: ubuntu)
+
+# ubuntu shell
+alias throwaway-ubuntu-bare='docker run --name throwaway-ubuntu-bare --rm -it ubuntu /bin/bash'
+
+# ubuntu shell with working locale and user
+# user: ubuntu / ubuntu
+# openssl passwd -crypt ubuntu
 alias throwaway-ubuntu='docker run --name throwaway-ubuntu --rm -e LANG=en_US.UTF-8 -e LANGUAGE=en_US:en -e LC_ALL=en_US.UTF-8 -it ubuntu /bin/bash -c "apt update && apt install locales sudo && locale-gen en_US.UTF-8 && useradd -m -G sudo -p mSJ3LdwLXNs8E ubuntu && su ubuntu && bash"'
+
 
 # Use vi as the default editor
 export VISUAL=vim
