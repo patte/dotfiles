@@ -20,7 +20,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	sudo apt install --yes gnupg2 rng-tools pinentry-curses
+	sudo apt install --yes gnupg2 rng-tools pinentry-curses pcscd scdaemon pcsc-tools
 
 	# gopass
 	GOPASS_VERSION='1.12.2'
