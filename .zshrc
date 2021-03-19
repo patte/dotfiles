@@ -71,6 +71,15 @@ alias throwaway-ubuntu-bare='docker run --name throwaway-ubuntu-bare --rm -it ub
 # openssl passwd -crypt ubuntu
 alias throwaway-ubuntu='docker run --name throwaway-ubuntu --rm -e LANG=en_US.UTF-8 -e LANGUAGE=en_US:en -e LC_ALL=en_US.UTF-8 -it ubuntu /bin/bash -c "apt update && apt install locales sudo && locale-gen en_US.UTF-8 && useradd -m -G sudo -p mSJ3LdwLXNs8E ubuntu && su ubuntu && bash"'
 
+#<https://security.stackexchange.com/questions/223054/gpg2-how-to-get-rid-of-please-insert-card-with-serial-number-getting-the-sam>
+alias fuck-gpg='
+rm .gnupg/private-keys-v1.d/*
+gpgconf --kill gpg-agent
+gpg-connect-agent reloadagent /bye
+gpg-connect-agent updatestartuptty /bye
+gpg --card-status
+'
+
 
 # Use vi as the default editor
 export VISUAL=vim
