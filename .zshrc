@@ -21,6 +21,15 @@ fi
 
 zplug load
 
+# up and down keys search history to complete current prompt 🙏
+# https://superuser.com/questions/585003/searching-through-history-with-up-and-down-arrow-in-zsh
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "$key[Up]" up-line-or-beginning-search # Up
+bindkey "$key[Down]" down-line-or-beginning-search # Down
+
 
 # history config
 HISTFILE=~/.zsh_history     #Where to save history to disk
