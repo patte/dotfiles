@@ -118,7 +118,7 @@ export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # gpg ssh
-if command -v gpgconf &> /dev/null
+if command -v gpgconf &> /dev/null && [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]
 then
 	export GPG_TTY=$(tty)
 
