@@ -13,8 +13,6 @@ then
 	echo
 	echo "working copy not clean!"
 	echo
-	git diff
-	echo
 fi
 
 COMMANDS=()
@@ -46,6 +44,8 @@ if [ ${#COMMANDS[@]} -gt 0 ]; then
 		done
 		echo "done!"
 	fi
+else
+	echo "dotfiles are in sync!"
 fi
 
 # vim:ft=sh
