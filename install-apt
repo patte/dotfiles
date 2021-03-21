@@ -36,6 +36,9 @@ then
 	#rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit
 fi
 
+# make locale troubles under ubuntu go away
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
 echo
 echo "making zsh the default shell"
 chsh -s /bin/zsh
