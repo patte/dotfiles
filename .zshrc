@@ -13,6 +13,7 @@ zplug "plugins/npm", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #SPACESHIP_PACKAGE_SHOW=false
 #SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_HOST_SHOW=always
 
 #zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
