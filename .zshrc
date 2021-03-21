@@ -11,6 +11,15 @@ zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+#SPACESHIP_PACKAGE_SHOW=false
+#SPACESHIP_DOCKER_SHOW=false
+
+#zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# up and down keys search history to complete current prompt 🙏
+zplug "robbyrussell/oh-my-zsh", use:"lib/key-bindings.zsh"
+zplug "robbyrussell/oh-my-zsh", use:"lib/directories.zsh"
+
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -20,15 +29,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-# up and down keys search history to complete current prompt 🙏
-# https://superuser.com/questions/585003/searching-through-history-with-up-and-down-arrow-in-zsh
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "$key[Up]" up-line-or-beginning-search # Up
-bindkey "$key[Down]" down-line-or-beginning-search # Down
 
 
 # history config
@@ -125,3 +125,5 @@ then
 	gpgconf --launch gpg-agent > /dev/null
 	gpg-connect-agent updatestartuptty /bye > /dev/null
 fi
+
+
