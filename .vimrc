@@ -163,28 +163,71 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin('~/.vim/plugged')
 
+"Plug 'micha/vim-colors-solarized'
+"Plug 'joshdick/onedark.vim'
+Plug 'wojciechkepka/vim-github-dark'
+Plug 'itchyny/lightline.vim'
+
+Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
-" Plug 'micha/vim-colors-solarized'
-Plug 'joshdick/onedark.vim'
+Plug 'tpope/vim-obsession'
+
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-obsession'
+Plug 'fatih/vim-go'
 
 call plug#end()
+
+" colors / theme
+syntax on
+" fix colors
+" https://github.com/joshdick/onedark.vim
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" https://github.com/tmux/tmux/issues/1246
+if (!empty($TMUX))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+" solarized colors:
+" let g:solarized_termcolors=256
+" colorscheme solarized
+"colorscheme onedark
+
+colorscheme ghdark
+
+let g:lightline = {
+  \ 'colorscheme': 'ghdark',
+  \ 'enable': { 'tabline': 0 },
+\ }
+
+" https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
 
 
 " NERDTree https://github.com/scrooloose/nerdtree
 autocmd vimenter * if !argc() | execute 'NERDTree' | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" solarized colors:
-" syntax enable
-set background=dark
-"let g:solarized_termcolors=256
-" colorscheme solarized
-colorscheme onedark
 
 " http://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>

@@ -54,10 +54,13 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias vi='vim -X'
 
-alias la='ls -lahF'
+alias ls='ls --color=auto'
+alias la='ls -lahF --color=auto'
 alias -- -='cd -'
 alias ..='cd ..'
 alias ...='cd ../..'
+
+alias grep='grep --color=auto'
 
 alias gip='git pull'
 alias gipu='git push'
