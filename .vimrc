@@ -227,7 +227,13 @@ let g:go_highlight_variable_assignments = 1
 " NERDTree https://github.com/scrooloose/nerdtree
 autocmd vimenter * if !argc() | execute 'NERDTree' | endif
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+augroup NERDTreeConfig
+ au!
+ " open NERDTree when no file args given (fails because of lazy-loading)
+ " autocmd vimenter * if !argc() | NERDTree | endif
+ " close when NERDTree is last window
+ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 " http://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
