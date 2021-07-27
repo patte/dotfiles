@@ -171,6 +171,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
 Plug 'tpope/vim-obsession'
+Plug 'tomtom/tcomment_vim'
 
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
