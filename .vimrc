@@ -173,9 +173,6 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeTogg
 Plug 'tpope/vim-obsession'
 Plug 'tomtom/tcomment_vim'
 
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'fatih/vim-go'
 
 call plug#end()
