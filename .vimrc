@@ -92,6 +92,11 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" use in visual :'<,'>FormatJson
+if !exists(":FormatJson")
+  command! -range FormatJson <line1>,<line2>!xargs -0 -I {} node -e 'console.log(JSON.stringify({}, null, 2));'
+endif
+
 " set terminal title
 set title
 
