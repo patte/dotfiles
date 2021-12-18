@@ -245,3 +245,5 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap // y/<C-R>"<CR>
 
 set ttymouse=sgr
+
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
