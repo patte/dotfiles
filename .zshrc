@@ -77,12 +77,12 @@ alias beep='spd-say -t female1 "done"'
 alias dodu='docker-compose down && docker-compose up -d'
 
 # ubuntu shell
-alias throwaway-ubuntu-bare='docker run --name throwaway-ubuntu-bare --rm -it ubuntu /bin/bash'
+alias throwaway-ubuntu-bare='docker run --name throwaway-ubuntu-bare --rm -it ubuntu:22.04 /bin/bash'
 
 # ubuntu shell with working locale and user
 # user: ubuntu / ubuntu
 # openssl passwd -crypt ubuntu
-alias throwaway-ubuntu='docker run --name throwaway-ubuntu --rm -e LANG=en_US.UTF-8 -e LANGUAGE=en_US:en -e LC_ALL=en_US.UTF-8 -it ubuntu /bin/bash -c "apt update && apt install locales sudo && locale-gen en_US.UTF-8 && useradd -m -G sudo -p mSJ3LdwLXNs8E ubuntu && su ubuntu && bash"'
+alias throwaway-ubuntu='docker run --name throwaway-ubuntu --rm -e LANG=en_US.UTF-8 -e LANGUAGE=en_US:en -e LC_ALL=en_US.UTF-8 -it ubuntu:22.04 /bin/bash -c "apt update && apt install locales sudo && locale-gen en_US.UTF-8 && useradd -m -G sudo -p mSJ3LdwLXNs8E ubuntu && su ubuntu && bash"'
 
 #<https://security.stackexchange.com/questions/223054/gpg2-how-to-get-rid-of-please-insert-card-with-serial-number-getting-the-sam>
 alias fuck-gpg='
@@ -130,4 +130,10 @@ then
 	gpg-connect-agent updatestartuptty /bye > /dev/null
 fi
 
+# pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
+# atuin
+#eval "$(atuin init zsh)"
