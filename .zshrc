@@ -3,14 +3,13 @@ source ~/.zplug/init.zsh
 
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/nvm", from:oh-my-zsh
-zplug "plugins/redis-cli", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/heroku", from:oh-my-zsh
+#zplug "plugins/redis-cli", from:oh-my-zsh
+#zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/cargo", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
-zplug "plugins/npm", from:oh-my-zsh
+#zplug "plugins/npm", from:oh-my-zsh
 
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #SPACESHIP_PACKAGE_SHOW=false
 #SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_HOST_SHOW=always
